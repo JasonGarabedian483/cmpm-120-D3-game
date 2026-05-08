@@ -64,6 +64,7 @@ class levelOne extends Phaser.Scene {
 
         let coin1 = createCoin(800, 600);
         let coin2 = createCoin(1000, 835);
+        let coin3 = createCoin(1500, 835);
         const block = blocks.create(1000, 835)
             .setMass(2)
             .setScale(8);
@@ -107,6 +108,9 @@ class levelOne extends Phaser.Scene {
     update() {
         if(this.lives == -1) {
             this.scene.restart();
+        }
+        if(this.score == 3) {
+            console.log("You win!");
         }
     }
 }
