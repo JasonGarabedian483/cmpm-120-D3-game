@@ -12,9 +12,12 @@ class levelOne extends Phaser.Scene {
 
     }
     create() {
+        // Declaring base variables
         let angle = 0
         this.score = 0
         this.lives = 3
+
+        // Creating assets / asset groups
         const graphics = this.add.graphics({
             lineStyle: {
                 width: 10,
@@ -34,7 +37,8 @@ class levelOne extends Phaser.Scene {
             .disableBody(true, true)
             .setDrag(.9, 0)
             .setDamping(true)
-            .setBounce(.25, .6);
+            .setBounce(.25, .6)
+            .setCollideWorldBounds(true);
         const blocks = this.physics.add.group({
             defaultKey: 'brick',
             bounceX: 1,
@@ -47,8 +51,9 @@ class levelOne extends Phaser.Scene {
         const walls = this.physics.add.staticGroup();
         const wall1 = this.add.rectangle(1250, 698, 75, 400, 0xffffff);
         this.physics.add.existing(wall1, true);
-
         const coins = this.physics.add.group();
+
+        // Function to create coins
         function createCoin(x, y) {
             const coin = coins.create(x, y, 'coin');
             coin.setScale(4);
@@ -56,20 +61,24 @@ class levelOne extends Phaser.Scene {
             coin.body.allowGravity = false;
             return coin;
         }
+
         let coin1 = createCoin(800, 600);
+        let coin2 = createCoin(1000, 835);
         const block = blocks.create(1000, 835)
             .setMass(2)
             .setScale(8);
 
+        // Score / Lives texts
         this.livesText = this.add.text(100, 100, 'Lives: ' + this.lives, {fontSize: '32px'});
         this.scoreText = this.add.text(100, 150, 'Score: ' + this.score, {fontSize: '32px'});
 
-        char1P.setCollideWorldBounds(true) // eventually set to false so player can miss
+        // Creating physics collissions
         this.physics.add.collider(char1P, ground);
         this.physics.add.collider(ground, block);
         this.physics.add.collider(char1P, block);
         this.physics.add.collider(char1P, wall1);
-        this.physics.add.overlap(char1P, coin1, (char1P, coin) => {
+        this.physics.add.collider(block, wall1);
+        this.physics.add.overlap(char1P, coins, (char1P, coin) => {
                 coin.destroy();
                 this.score += 1;
                 console.log('score: ', this.score);
@@ -93,11 +102,6 @@ class levelOne extends Phaser.Scene {
                 this.scene.restart();
             }
         });
-
-
-
-        
-
     }
 
     update() {
