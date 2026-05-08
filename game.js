@@ -80,7 +80,7 @@ class levelOne extends Phaser.Scene {
         let coin1 = createCoin(800, 600);
         let coin2 = createCoin(1000, 835);
         let coin3 = createCoin(1500, 835);
-        const block = blocks.create(1000, 835)
+        let block = blocks.create(1000, 835)
             .setMass(2)
             .setScale(8);
 
@@ -126,6 +126,18 @@ class levelOne extends Phaser.Scene {
                 this.scene.start('leveltwo');
             })
         }
+    }
+}
+
+class levelOneSummary extends Phaser.Scene{
+    constructor() {
+        super('levelonesum')
+    }
+    preload() {
+
+    }
+    update() {
+
     }
 }
 
@@ -175,7 +187,7 @@ class levelTwo extends Phaser.Scene {
             .setDrag(.9, 0)
             .setDamping(true)
             .setBounce(.25, .6)
-            .setCollideWorldBounds(true);
+            //.setCollideWorldBounds(true);
 
         // Function to create blocks: use blocks.create(x, y)
         const blocks = this.physics.add.group({
@@ -206,6 +218,42 @@ class levelTwo extends Phaser.Scene {
             coin.body.allowGravity = false;
             return coin;
         }
+
+        let wall1 = createWall(1000, 400, 75, 150);
+        let wall2 = createWall(350, 450, 300, 75)
+        let coin1 = createCoin(350, 350)
+        let block1 = blocks.create(350, 350)
+            .setScale(8)
+            .setMass(2);
+        //let wall3 = createWall(1800, 400, 100, 300, 0x000000)
+        let coin2 = createCoin(1035, 835);
+        let block2 = blocks.create(1035, 835)
+            .setScale(8)
+            .setMass(2);
+        let block3 = blocks.create(1035, 707)
+            .setScale(8)
+            .setMass(2);    
+        let block4 = blocks.create(1035, 579)
+            .setScale(8)
+            .setMass(2);
+
+        // Collision between character and objects
+        this.physics.add.collider(char1P, ground);
+        this.physics.add.collider(ground, blocks);
+        this.physics.add.collider(char1P, blocks);
+        this.physics.add.collider(blocks);
+        this.physics.add.collider(char1P, wall1, () => {
+            char1P.setVelocityX(char1P.body.velocity.x * 1.5);
+        });
+        this.physics.add.collider(char1P, walls);
+        this.physics.add.collider(blocks, walls);
+        this.physics.add.overlap(char1P, coins, (char1P, coin) => {
+                coin.destroy();
+                this.score += 1;
+                console.log('score: ', this.score);
+                this.scoreText.setText('Score: ' + this.score);
+            }
+        );
 
         // PUT THIS AT BOTTOM
         this.input.on('pointermove', (pointer) => {
@@ -242,6 +290,7 @@ const game = new Phaser.Game({
             debug: true
         },
     },
-    scene: [levelOne, levelTwo],
+    //scene: [levelOne, levelTwo],
+    scene: [levelTwo],
     title: "Angry Viscous",
 });
