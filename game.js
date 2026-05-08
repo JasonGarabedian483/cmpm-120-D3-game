@@ -12,14 +12,16 @@ class levelOne extends Phaser.Scene {
 
     }
     create() {
+        // Set background color
+        this.cameras.main.setBackgroundColor('#67BED9');
         // Declaring base variables
         let angle = 0
         this.score = 0
         this.lives = 3
 
         // Score / Lives texts
-        this.livesText = this.add.text(100, 100, 'Lives: ' + this.lives, {fontSize: '32px'});
-        this.scoreText = this.add.text(100, 150, 'Score: ' + this.score, {fontSize: '32px'});
+        this.livesText = this.add.text(100, 100, 'Lives: ' + this.lives, {fontSize: '32px', color: '#000000'});
+        this.scoreText = this.add.text(100, 150, 'Score: ' + this.score, {fontSize: '32px', color: '#000000'});
 
         // Creating assets / asset groups
         const graphics = this.add.graphics({
@@ -57,7 +59,7 @@ class levelOne extends Phaser.Scene {
 
         // Function to create walls: use createWall(x, y, width, height)
         const walls = this.physics.add.staticGroup();
-        const createWall = (x, y, width, height, color = 0xffffff) => {
+        const createWall = (x, y, width, height, color = 0x000000) => {
             const wall = this.add.rectangle(x, y, width, height, color)
             this.physics.add.existing(wall, true);
             walls.add(wall);
@@ -141,14 +143,16 @@ class levelTwo extends Phaser.Scene {
 
     }
     create() {
+        // Set background color
+        this.cameras.main.setBackgroundColor('#67BED9');
         // Declaring base variables
         let angle = 0
         this.score = 0
         this.lives = 3
 
         // Score / Lives texts
-        this.livesText = this.add.text(100, 100, 'Lives: ' + this.lives, {fontSize: '32px'});
-        this.scoreText = this.add.text(100, 150, 'Score: ' + this.score, {fontSize: '32px'});
+        this.livesText = this.add.text(100, 100, 'Lives: ' + this.lives, {fontSize: '32px', color: '#000000'});
+        this.scoreText = this.add.text(100, 150, 'Score: ' + this.score, {fontSize: '32px', color: '#000000'});
 
         // Creating assets / asset groups
         const graphics = this.add.graphics({
