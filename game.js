@@ -129,7 +129,7 @@ class levelOne extends Phaser.Scene {
     }
 }
 
-class levelOneSummary extends Phaser.Scene{
+class levelOneSummary extends Phaser.Scene{ // FINISH THIS
     constructor() {
         super('levelonesum')
     }
@@ -141,9 +141,33 @@ class levelOneSummary extends Phaser.Scene{
     }
 }
 
-class levelTwo extends Phaser.Scene {
+class levelTwo extends Phaser.Scene{ // FINISH THIS
     constructor() {
         super('leveltwo')
+    }
+    preload() {
+
+    }
+    update() {
+
+    }
+}
+
+class levelTwoSummary extends Phaser.Scene{ // FINISH THIS
+    constructor() {
+        super('leveltwosum')
+    }
+    preload() {
+
+    }
+    update() {
+
+    }
+}
+
+class levelThree extends Phaser.Scene {
+    constructor() {
+        super('levelthree')
     }
     preload() {
         this.load.path = 'assets/'
@@ -236,6 +260,8 @@ class levelTwo extends Phaser.Scene {
         let block4 = blocks.create(1035, 579)
             .setScale(8)
             .setMass(2);
+        let wall3 = createWall(1400, 500, 75, 400);
+        let coin3 = createCoin(1100, 400)
 
         // Collision between character and objects
         this.physics.add.collider(char1P, ground);
@@ -244,6 +270,9 @@ class levelTwo extends Phaser.Scene {
         this.physics.add.collider(blocks);
         this.physics.add.collider(char1P, wall1, () => {
             char1P.setVelocityX(char1P.body.velocity.x * 1.5);
+        });
+        this.physics.add.collider(char1P, wall3, () => {
+            char1P.setVelocityY(-Math.abs(char1P.body.velocity.y) * 2);
         });
         this.physics.add.collider(char1P, walls);
         this.physics.add.collider(blocks, walls);
@@ -274,6 +303,26 @@ class levelTwo extends Phaser.Scene {
         });
     }
     update() {
+        if(this.lives == -1) {
+            this.scene.restart();
+        }
+        if(this.score == 3) {
+            console.log("You win!");
+            this.time.delayedCall(1000, () => {
+                this.scene.start('levelthreesum');
+            })
+        }
+    }
+}
+
+class levelThreeSummary extends Phaser.Scene { // FINISH THIS
+    constructor() {
+        super('levelthreesum')
+    }
+    preload() {
+
+    }
+    update() {
 
     }
 }
@@ -290,7 +339,7 @@ const game = new Phaser.Game({
             debug: true
         },
     },
-    //scene: [levelOne, levelTwo],
-    scene: [levelTwo],
+    //scene: [levelOne, levelThree],
+    scene: [levelThree],
     title: "Angry Viscous",
 });
