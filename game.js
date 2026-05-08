@@ -11,7 +11,12 @@ class levelOne extends Phaser.Scene {
 
     }
     create() {
-        const graphics = this.add.graphics({ lineStyle: { width: 10, color: 0xffffff, alpha: 0.5 } });
+        const graphics = this.add.graphics({
+            lineStyle: {
+                width: 10,
+                color: 0xffffff,
+                alpha: 0.5
+            }});
         let line = new Phaser.Geom.Line();
         let ground = this.physics.add.staticImage(1920/2, 1000, 'ground')
             .setScale(2.5)
@@ -23,7 +28,8 @@ class levelOne extends Phaser.Scene {
             .setScale(.4)
             .disableBody(true, true)
             .setDrag(.9, 0)
-            .setDamping(true);
+            .setDamping(true)
+            .setBounce(.25, .6);
         const blocks = this.physics.add.group({
             defaultKey: 'brick',
             bounceX: 1,
@@ -33,7 +39,10 @@ class levelOne extends Phaser.Scene {
             dragY: 0.5,
             useDamping: true
         });
-
+        const walls = this.physics.add.staticGroup();
+        const wall1 = this.add.rectangle(1250, 698, 75, 400, 0xffffff);
+        this.physics.add.existing(wall1, true);
+        
         const block = blocks.create(1000, 835)
             .setMass(2)
             .setScale(8);
@@ -42,6 +51,7 @@ class levelOne extends Phaser.Scene {
         this.physics.add.collider(char1P, ground);
         this.physics.add.collider(ground, block);
         this.physics.add.collider(char1P, block);
+        this.physics.add.collider(char1P, wall1);
         let angle = 0
 
         this.input.on('pointermove', (pointer) => {
@@ -53,7 +63,7 @@ class levelOne extends Phaser.Scene {
 
         this.input.on('pointerup', () => {
             char1P.enableBody(true, 300, 850, true, true);
-            this.physics.velocityFromRotation(angle, 600, char1P.body.velocity);
+            this.physics.velocityFromRotation(angle, 1000, char1P.body.velocity);
              /*this.tweens.add({
                 targets: [char1], 
                 alpha: 0,
