@@ -7,10 +7,13 @@ class levelOne extends Phaser.Scene {
         this.load.image('character', 'char.png');
         this.load.image('ground', 'ground.png');
         this.load.image('brick', 'brick.png');
+        this.load.image('coin', 'coin.png');
 
 
     }
     create() {
+        let angle = 0
+        this.score = 0
         const graphics = this.add.graphics({
             lineStyle: {
                 width: 10,
@@ -26,6 +29,7 @@ class levelOne extends Phaser.Scene {
             .setScale(.4);
         const char1P = this.physics.add.sprite(300, 850, 'character')
             .setScale(.4)
+            .setDepth(1)
             .disableBody(true, true)
             .setDrag(.9, 0)
             .setDamping(true)
@@ -42,7 +46,22 @@ class levelOne extends Phaser.Scene {
         const walls = this.physics.add.staticGroup();
         const wall1 = this.add.rectangle(1250, 698, 75, 400, 0xffffff);
         this.physics.add.existing(wall1, true);
-        
+
+        /*
+        const coin1 = this.physics.add.sprite(800, 600, 'coin')
+            .setScale(4)
+            .setDepth(0);
+        coin1.body.allowGravity = false; */
+
+        const coins = this.physics.add.group();
+        function createCoin(x, y) {
+            const coin = coins.create(x, y, 'coin');
+            coin.setScale(4);
+            coin.setDepth(0);
+            coin.body.allowGravity = false;
+            return coin;
+        }
+        let coin1 = createCoin(800, 600);
         const block = blocks.create(1000, 835)
             .setMass(2)
             .setScale(8);
@@ -52,7 +71,13 @@ class levelOne extends Phaser.Scene {
         this.physics.add.collider(ground, block);
         this.physics.add.collider(char1P, block);
         this.physics.add.collider(char1P, wall1);
-        let angle = 0
+        this.physics.add.overlap(char1P, coin1, (char1P, coin) => {
+                coin.destroy();
+                this.score += 1;
+                console.log('Score: ', this.score);
+            }
+        );
+
 
         this.input.on('pointermove', (pointer) => {
             angle = Phaser.Math.Angle.BetweenPoints(char1, pointer);
