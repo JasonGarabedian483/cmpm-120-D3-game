@@ -14,6 +14,7 @@ class levelOne extends Phaser.Scene {
     create() {
         let angle = 0
         this.score = 0
+        this.lives = 3
         const graphics = this.add.graphics({
             lineStyle: {
                 width: 10,
@@ -47,12 +48,6 @@ class levelOne extends Phaser.Scene {
         const wall1 = this.add.rectangle(1250, 698, 75, 400, 0xffffff);
         this.physics.add.existing(wall1, true);
 
-        /*
-        const coin1 = this.physics.add.sprite(800, 600, 'coin')
-            .setScale(4)
-            .setDepth(0);
-        coin1.body.allowGravity = false; */
-
         const coins = this.physics.add.group();
         function createCoin(x, y) {
             const coin = coins.create(x, y, 'coin');
@@ -65,7 +60,10 @@ class levelOne extends Phaser.Scene {
         const block = blocks.create(1000, 835)
             .setMass(2)
             .setScale(8);
-        
+
+        this.livesText = this.add.text(100, 100, 'Lives: ' + this.lives, {fontSize: '32px'});
+        this.scoreText = this.add.text(100, 150, 'Score: ' + this.score, {fontSize: '32px'});
+
         char1P.setCollideWorldBounds(true) // eventually set to false so player can miss
         this.physics.add.collider(char1P, ground);
         this.physics.add.collider(ground, block);
@@ -74,10 +72,10 @@ class levelOne extends Phaser.Scene {
         this.physics.add.overlap(char1P, coin1, (char1P, coin) => {
                 coin.destroy();
                 this.score += 1;
-                console.log('Score: ', this.score);
+                console.log('score: ', this.score);
+                this.scoreText.setText('Score: ' + this.score);
             }
         );
-
 
         this.input.on('pointermove', (pointer) => {
             angle = Phaser.Math.Angle.BetweenPoints(char1, pointer);
@@ -89,20 +87,23 @@ class levelOne extends Phaser.Scene {
         this.input.on('pointerup', () => {
             char1P.enableBody(true, 300, 850, true, true);
             this.physics.velocityFromRotation(angle, 1000, char1P.body.velocity);
-             /*this.tweens.add({
-                targets: [char1], 
-                alpha: 0,
-                duration: 0
-            }); */
+            this.lives -= 1;
+            this.livesText.setText('Lives: ' + this.lives);
+            if (this.lives < 0) {
+                this.scene.restart();
+            }
         });
 
-        this.input.keyboard.on('keydown-R', () => {
-            this.scene.restart();
-        });
+
+
+        
 
     }
 
     update() {
+        if(this.lives == -1) {
+            this.scene.restart();
+        }
     }
 }
 
