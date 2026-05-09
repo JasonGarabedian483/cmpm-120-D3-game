@@ -76,6 +76,10 @@ class levelOne extends Phaser.Scene {
             return coin;
         }
 
+        let frame1 = createWall(15, 450, 30, 900, 0x000000);
+        let frame2 = createWall(1000, 15, 2000, 30, 0x000000)
+            .setDepth(1);
+        let frame3 = createWall(1905, 450, 30, 900, 0x000000);
         let wall1 = createWall(1250, 698, 75, 400);
         let coin1 = createCoin(800, 600);
         let coin2 = createCoin(1000, 835);
@@ -123,7 +127,7 @@ class levelOne extends Phaser.Scene {
         if(this.score == 3) {
             console.log("You win!");
             this.time.delayedCall(1000, () => {
-                this.scene.start('levelonesum');
+                this.scene.start('leveltwo');
             })
         }
     }
@@ -278,7 +282,7 @@ class levelTwo extends Phaser.Scene{ // FINISH THIS
         if(this.score == 2) {
             console.log("You win!");
             this.time.delayedCall(1000, () => {
-                this.scene.start('leveltwosum');
+                this.scene.start('levelthree');
             })
         }
     }
@@ -375,6 +379,10 @@ class levelThree extends Phaser.Scene {
             return coin;
         }
 
+        let frame1 = createWall(15, 450, 30, 900, 0x000000);
+        let frame2 = createWall(1000, 15, 2000, 30, 0x000000)
+            .setDepth(1);
+        let frame3 = createWall(1905, 450, 30, 900, 0x000000);
         let wall1 = createWall(1000, 400, 75, 150);
         let wall2 = createWall(350, 450, 300, 75)
         let coin1 = createCoin(350, 350)
