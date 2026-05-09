@@ -123,7 +123,7 @@ class levelOne extends Phaser.Scene {
         if(this.score == 3) {
             console.log("You win!");
             this.time.delayedCall(1000, () => {
-                this.scene.start('leveltwo');
+                this.scene.start('levelonesum');
             })
         }
     }
@@ -219,11 +219,20 @@ class levelTwo extends Phaser.Scene{ // FINISH THIS
             return coin;
         }
 
+        let frame1 = createWall(15, 450, 30, 900, 0x000000);
+        let frame2 = createWall(1000, 15, 2000, 30, 0x000000)
+            .setDepth(1);
+        let frame3 = createWall(1905, 450, 30, 900, 0x000000);
         let wall1 = createWall(1000, 500, 75, 400);
         let wall2 = createWall(700, 200, 75, 500);
-        let wall3 = createWall(1263, 262, 600, 75);
+        let wall3 = createWall(1263, 270, 600, 75);
+        let wall4 = createWall(500, 350, 100, 75);
+        let coin1 = createCoin(500, 250);
+        let coin2 = createCoin(1250, 175);
+
 
         // Creating physics collisions
+        //this.physics.add.collider(char1P, walls);
         this.physics.add.collider(char1P, ground);
         this.physics.add.collider(ground, blocks);
         this.physics.add.collider(char1P, blocks);
@@ -242,6 +251,7 @@ class levelTwo extends Phaser.Scene{ // FINISH THIS
                 this.scoreText.setText('Score: ' + this.score);
             }
         );
+        this.physics.add.collider(char1P, walls);
 
         // PUT THIS AT BOTTOM
         this.input.on('pointermove', (pointer) => {
@@ -265,10 +275,10 @@ class levelTwo extends Phaser.Scene{ // FINISH THIS
         if(this.lives == -1) {
             this.scene.restart();
         }
-        if(this.score == 3) {
+        if(this.score == 2) {
             console.log("You win!");
             this.time.delayedCall(1000, () => {
-                this.scene.start('levelthreesum');
+                this.scene.start('leveltwosum');
             })
         }
     }
@@ -462,6 +472,6 @@ const game = new Phaser.Game({
         },
     },
     //scene: [levelOne, levelOneSummary, levelTwo, levelTwoSummary, levelThree, levelThreeSummary],
-    scene: [levelTwo],
+    scene: [levelOne, levelTwo, levelThree],
     title: "Angry Viscous",
 });
