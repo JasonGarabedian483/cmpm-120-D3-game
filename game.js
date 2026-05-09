@@ -59,7 +59,7 @@ class levelOne extends Phaser.Scene {
 
         // Function to create walls: use createWall(x, y, width, height)
         const walls = this.physics.add.staticGroup();
-        const createWall = (x, y, width, height, color = 0x000000) => {
+        const createWall = (x, y, width, height, color = 0xffffff) => {
             const wall = this.add.rectangle(x, y, width, height, color)
             this.physics.add.existing(wall, true);
             walls.add(wall);
