@@ -468,7 +468,7 @@ const game = new Phaser.Game({
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: true
+            //debug: true
         },
     },
     //scene: [levelOne, levelOneSummary, levelTwo, levelTwoSummary, levelThree, levelThreeSummary],
