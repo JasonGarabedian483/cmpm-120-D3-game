@@ -11,7 +11,7 @@ ANGRY GOO
         - 3 different levels of increasing difficulty, with the first two introducing different ways the player can get coins, and the third combining those two to make a harder level
     - Other scenes used to seaparate and contextualize gameplay scenes
         - 3 summary screens, one after each level that gives information about the player beating the level
-        - Thanks for playing scene at the end of the game (TO DO)
+        - Thanks for playing scene at the end of the game
 
 - Assets
     - Character asset, Ground asset, and Coin asset were all drawn by me (Jason Garabedian)
