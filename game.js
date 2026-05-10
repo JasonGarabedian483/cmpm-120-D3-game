@@ -44,14 +44,12 @@ class levelOne extends Phaser.Scene {
             .setDrag(.9, 0)
             .setDamping(true)
             .setBounce(.25, .6)
-            .setCollideWorldBounds(true);
 
         // Function to create blocks: use blocks.create(x, y)
         const blocks = this.physics.add.group({
             defaultKey: 'brick',
             bounceX: 1,
             bounceY: 1,
-            collideWorldBounds: true,
             dragX: 0.5,
             dragY: 0.5,
             useDamping: true
@@ -241,14 +239,12 @@ class levelTwo extends Phaser.Scene{
             .setDrag(.9, 0)
             .setDamping(true)
             .setBounce(.25, .6)
-            //.setCollideWorldBounds(true);
 
         // Function to create blocks: use blocks.create(x, y)
         const blocks = this.physics.add.group({
             defaultKey: 'brick',
             bounceX: 1,
             bounceY: 1,
-            collideWorldBounds: true,
             dragX: 0.5,
             dragY: 0.5,
             useDamping: true
@@ -446,14 +442,12 @@ class levelThree extends Phaser.Scene {
             .setDrag(.9, 0)
             .setDamping(true)
             .setBounce(.25, .6)
-            //.setCollideWorldBounds(true);
 
         // Function to create blocks: use blocks.create(x, y)
         const blocks = this.physics.add.group({
             defaultKey: 'brick',
             bounceX: 1,
             bounceY: 1,
-            collideWorldBounds: true,
             dragX: 0.5,
             dragY: 0.5,
             useDamping: true
@@ -488,7 +482,6 @@ class levelThree extends Phaser.Scene {
         let block1 = blocks.create(350, 350)
             .setScale(8)
             .setMass(2);
-        //let wall3 = createWall(1800, 400, 100, 300, 0x000000)
         let coin2 = createCoin(1035, 835);
         let block2 = blocks.create(1035, 835)
             .setScale(8)
@@ -523,7 +516,7 @@ class levelThree extends Phaser.Scene {
             }
         );
 
-        // PUT THIS AT BOTTOM
+        // Mouse based actions
         this.input.on('pointermove', (pointer) => {
             angle = Phaser.Math.Angle.BetweenPoints(char1, pointer);
             char1.rotation = angle;
