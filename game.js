@@ -8,6 +8,7 @@ class levelOne extends Phaser.Scene {
         this.load.image('ground', 'ground.png');
         this.load.image('brick', 'brick.png');
         this.load.image('coin', 'coin.png');
+        this.load.audio('pop', 'pop.mp3');
 
 
     }
@@ -94,6 +95,7 @@ class levelOne extends Phaser.Scene {
         this.physics.add.collider(blocks, walls);
         this.physics.add.overlap(char1P, coins, (char1P, coin) => {
                 coin.destroy();
+                this.sound.play('pop');
                 this.score += 1;
                 console.log('score: ', this.score);
                 this.scoreText.setText('Score: ' + this.score);
@@ -204,6 +206,7 @@ class levelTwo extends Phaser.Scene{
         this.load.image('ground', 'ground.png');
         this.load.image('brick', 'brick.png');
         this.load.image('coin', 'coin.png');
+        this.load.audio('pop', 'pop.mp3');
 
 
     }
@@ -295,6 +298,7 @@ class levelTwo extends Phaser.Scene{
         })
         this.physics.add.overlap(char1P, coins, (char1P, coin) => {
                 coin.destroy();
+                this.sound.play('pop');
                 this.score += 1;
                 console.log('score: ', this.score);
                 this.scoreText.setText('Score: ' + this.score);
@@ -405,6 +409,7 @@ class levelThree extends Phaser.Scene {
         this.load.image('ground', 'ground.png');
         this.load.image('brick', 'brick.png');
         this.load.image('coin', 'coin.png');
+        this.load.audio('pop', 'pop.mp3');
 
 
     }
@@ -509,6 +514,7 @@ class levelThree extends Phaser.Scene {
         this.physics.add.collider(blocks, walls);
         this.physics.add.overlap(char1P, coins, (char1P, coin) => {
                 coin.destroy();
+                this.sound.play('pop');
                 this.score += 1;
                 console.log('score: ', this.score);
                 this.scoreText.setText('Score: ' + this.score);
