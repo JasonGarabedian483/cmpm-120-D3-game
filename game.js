@@ -115,37 +115,87 @@ class levelOne extends Phaser.Scene {
             this.lives -= 1;
             this.livesText.setText('Lives: ' + this.lives);
             if (this.lives < 0) {
-                this.scene.restart();
+                char1P.disableBody(false, true);
+                this.add.text(1920 / 2, 400, 'You lose!', {
+                    fontSize: '72px',
+                    stroke: '#000000',
+                    strokeThickness: 8
+                }).setOrigin(0.5);
+                this.add.text(1920 / 2, 500, 'Click to retry', {
+                    fontSize: '72px',
+                    stroke: '#000000',
+                    strokeThickness: 8
+                }).setOrigin(0.5);
+
+                this.input.once('pointerup', () => {
+                    this.scene.restart();
+                })
             }
         });
     }
 
     update() {
-        if(this.lives == -1) {
-            this.scene.restart();
-        }
         if(this.score == 3) {
-            console.log("You win!");
             this.time.delayedCall(1000, () => {
-                this.scene.start('leveltwo');
+                this.scene.start('levelonesum', {
+                    score: this.score,
+                    lives: this.lives
+                });
             })
         }
     }
 }
 
-class levelOneSummary extends Phaser.Scene{ // FINISH THIS
+class levelOneSummary extends Phaser.Scene{
     constructor() {
         super('levelonesum')
     }
     preload() {
+        this.load.path = 'assets/'
+        this.load.image('background', 'level1.png');
 
+    }
+    create(data) {
+        let background = this.add.image(1920 / 2, 540, 'background');
+        this.add.text(1920 / 2, 300, 'Score Achieved: ' + data.score, {
+            fontSize: '48px',
+            stroke: '#0000000',
+            strokeThickness: 8
+        })
+            .setOrigin(0.5);
+        this.add.text(1920 / 2, 400, 'Lives left: ' + data.lives, {
+            fontSize: '48px',
+            stroke: '#000000',
+            strokeThickness: 8
+        })
+            .setOrigin(0.5);
+        let continueText = this.add.text(1920 / 2, 600, "Click to continue", {
+            fontSize: '72px',
+            stroke: '#000000',
+            strokeThickness: 8
+        })
+            .setOrigin(0.5);
+
+        this.tweens.add({
+            targets: continueText,
+            alpha: 0,
+            yoyo: true,
+            duration: 1000,
+            ease: 'Power1',
+            loop: -1
+        });
+
+        this.input.on('pointerdown', () => {
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => this.scene.start('leveltwo'));
+        });
     }
     update() {
 
     }
 }
 
-class levelTwo extends Phaser.Scene{ // FINISH THIS
+class levelTwo extends Phaser.Scene{
     constructor() {
         super('leveltwo')
     }
@@ -271,30 +321,79 @@ class levelTwo extends Phaser.Scene{ // FINISH THIS
             this.lives -= 1;
             this.livesText.setText('Lives: ' + this.lives);
             if (this.lives < 0) {
-                this.scene.restart();
+                char1P.disableBody(false, true);
+                this.add.text(1920 / 2, 400, 'You lose!', {
+                    fontSize: '72px',
+                    stroke: '#000000',
+                    strokeThickness: 8
+                }).setOrigin(0.5);
+                this.add.text(1920 / 2, 500, 'Click to retry', {
+                    fontSize: '72px',
+                    stroke: '#000000',
+                    strokeThickness: 8
+                }).setOrigin(0.5);
+
+                this.input.once('pointerup', () => {
+                    this.scene.restart();
+                })
             }
         });
     }
     update() {
-        if(this.lives == -1) {
-            this.scene.restart();
-        }
         if(this.score == 2) {
-            console.log("You win!");
             this.time.delayedCall(1000, () => {
-                this.scene.start('levelthree');
+                this.scene.start('leveltwosum', {
+                    score: this.score,
+                    lives: this.lives
+                });
             })
         }
     }
 
 }
 
-class levelTwoSummary extends Phaser.Scene{ // FINISH THIS
+class levelTwoSummary extends Phaser.Scene{
     constructor() {
         super('leveltwosum')
     }
     preload() {
+        this.load.path = 'assets/'
+        this.load.image('background', 'level2.png');
+    }
+    create(data) {
+        let background = this.add.image(1920 / 2, 540, 'background');
+        this.add.text(1920 / 2, 300, 'Score Achieved: ' + data.score, {
+            fontSize: '48px',
+            stroke: '#0000000',
+            strokeThickness: 8
+        })
+            .setOrigin(0.5);
+        this.add.text(1920 / 2, 400, 'Lives left: ' + data.lives, {
+            fontSize: '48px',
+            stroke: '#000000',
+            strokeThickness: 8
+        })
+            .setOrigin(0.5);
+        let continueText = this.add.text(1920 / 2, 600, "Click to continue", {
+            fontSize: '72px',
+            stroke: '#000000',
+            strokeThickness: 8
+        })
+            .setOrigin(0.5);
 
+        this.tweens.add({
+            targets: continueText,
+            alpha: 0,
+            yoyo: true,
+            duration: 1000,
+            ease: 'Power1',
+            loop: -1
+        });
+
+        this.input.on('pointerdown', () => {
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => this.scene.start('levelthree'));
+        });
     }
     update() {
 
@@ -438,29 +537,99 @@ class levelThree extends Phaser.Scene {
             this.lives -= 1;
             this.livesText.setText('Lives: ' + this.lives);
             if (this.lives < 0) {
-                this.scene.restart();
+                char1P.disableBody(false, true);
+                this.add.text(1920 / 2, 400, 'You lose!', {
+                    fontSize: '72px',
+                    stroke: '#000000',
+                    strokeThickness: 8
+                }).setOrigin(0.5);
+                this.add.text(1920 / 2, 500, 'Click to retry', {
+                    fontSize: '72px',
+                    stroke: '#000000',
+                    strokeThickness: 8
+                }).setOrigin(0.5);
+
+                this.input.once('pointerup', () => {
+                    this.scene.restart();
+                })
             }
         });
     }
     update() {
-        if(this.lives == -1) {
-            this.scene.restart();
-        }
         if(this.score == 3) {
-            console.log("You win!");
             this.time.delayedCall(1000, () => {
-                this.scene.start('levelthreesum');
+                this.scene.start('levelthreesum', {
+                    score: this.score,
+                    lives: this.lives
+                });
             })
         }
     }
 }
 
-class levelThreeSummary extends Phaser.Scene { // FINISH THIS TOO
+class levelThreeSummary extends Phaser.Scene {
     constructor() {
         super('levelthreesum')
     }
     preload() {
+        this.load.path = 'assets/'
+        this.load.image('background', 'level3.png');
+    }
+    create(data) {
+        let background = this.add.image(1920 / 2, 540, 'background');
+        this.add.text(1920 / 2, 300, 'Score Achieved: ' + data.score, {
+            fontSize: '48px',
+            stroke: '#0000000',
+            strokeThickness: 8
+        }).setOrigin(0.5);
+        this.add.text(1920 / 2, 400, 'Lives left: ' + data.lives, {
+            fontSize: '48px',
+            stroke: '#000000',
+            strokeThickness: 8
+        }).setOrigin(0.5);
+        let continueText = this.add.text(1920 / 2, 600, "Click to continue", {
+            fontSize: '72px',
+            stroke: '#000000',
+            strokeThickness: 8
+        }).setOrigin(0.5);
 
+        this.tweens.add({
+            targets: continueText,
+            alpha: 0,
+            yoyo: true,
+            duration: 1000,
+            ease: 'Power1',
+            loop: -1
+        });
+
+        this.input.on('pointerdown', () => {
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => this.scene.start('endscene'));
+        });
+    }
+    update() {
+
+    }
+}
+
+class Thanks4Playing extends Phaser.Scene {
+    constructor() {
+        super('endscene')
+    }
+    preload() {
+
+    }
+    create() {
+        this.add.text(1920 / 2, 540, 'Thanks for playing!', {
+            fontSize: '72px'
+        }).setOrigin(0.5);
+        this.add.text(1920 / 2, 640, "Click to restart game", {
+            fontSize: '48px'
+        }).setOrigin(0.5);
+        this.input.on('pointerdown', () => {
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => this.scene.start('levelone'));
+        });
     }
     update() {
 
@@ -476,10 +645,8 @@ const game = new Phaser.Game({
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            //debug: true
         },
     },
-    //scene: [levelOne, levelOneSummary, levelTwo, levelTwoSummary, levelThree, levelThreeSummary],
-    scene: [levelOne, levelTwo, levelThree],
+    scene: [levelOne, levelOneSummary, levelTwo, levelTwoSummary, levelThree, levelThreeSummary, Thanks4Playing],
     title: "Angry Viscous",
 });

@@ -17,4 +17,10 @@ ANGRY GOO
     - 3+ physics-based gameplay scenes
         - 3 different levels of increasing difficulty, with the first two introducing different ways the player can get coins, and the third combining those two to make a harder level
     - Other scenes used to seaparate and contextualize gameplay scenes
-        - 3 summary screens, one after each level that gives information about the player beating the level (TO DO)
+        - 3 summary screens, one after each level that gives information about the player beating the level
+        - Thanks for playing scene at the end of the game (TO DO)
+
+- Assets
+    - Character asset, Ground asset, and Coin asset were all drawn by me (Jason Garabedian)
+    - Background and Platforms assets were generated in engine
+    - Block asset was taken from minecraft brick texture
