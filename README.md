@@ -1,5 +1,6 @@
 # cmpm-120-D3-game
 ANGRY GOO
+
 - Gameplay / Experience requirements
     - Continuous and discrete input
         - Continuous: Aiming character with mouse listens for mouse movement and adjusts in real time

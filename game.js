@@ -9,12 +9,13 @@ class levelOne extends Phaser.Scene {
         this.load.image('brick', 'brick.png');
         this.load.image('coin', 'coin.png');
         this.load.audio('pop', 'pop.mp3');
+        this.load.image('background', 'background.png');
 
 
     }
     create() {
-        // Set background color
-        this.cameras.main.setBackgroundColor('#67BED9');
+        // Adding backdrop
+        this.add.image(1920 / 2, 540, 'background');
         // Declaring base variables
         let angle = 0
         this.score = 0
@@ -58,7 +59,7 @@ class levelOne extends Phaser.Scene {
 
         // Function to create walls: use createWall(x, y, width, height)
         const walls = this.physics.add.staticGroup();
-        const createWall = (x, y, width, height, color = 0xffffff) => {
+        const createWall = (x, y, width, height, color = 0x5E5E5E) => {
             const wall = this.add.rectangle(x, y, width, height, color)
             this.physics.add.existing(wall, true);
             walls.add(wall);
@@ -207,12 +208,11 @@ class levelTwo extends Phaser.Scene{
         this.load.image('brick', 'brick.png');
         this.load.image('coin', 'coin.png');
         this.load.audio('pop', 'pop.mp3');
-
-
+        this.load.image('background', 'background.png');
     }
     create() {
-        // Set background color
-        this.cameras.main.setBackgroundColor('#67BED9');
+        // Adding backdrop
+        this.add.image(1920 / 2, 540, 'background');
         // Declaring base variables
         let angle = 0
         this.score = 0
@@ -256,7 +256,7 @@ class levelTwo extends Phaser.Scene{
 
         // Function to create walls: use createWall(x, y, width, height)
         const walls = this.physics.add.staticGroup();
-        const createWall = (x, y, width, height, color = 0xffffff) => {
+        const createWall = (x, y, width, height, color = 0x5E5E5E) => {
             const wall = this.add.rectangle(x, y, width, height, color)
             this.physics.add.existing(wall, true);
             walls.add(wall);
@@ -410,12 +410,13 @@ class levelThree extends Phaser.Scene {
         this.load.image('brick', 'brick.png');
         this.load.image('coin', 'coin.png');
         this.load.audio('pop', 'pop.mp3');
+        this.load.image('background', 'background.png');
 
 
     }
     create() {
-        // Set background color
-        this.cameras.main.setBackgroundColor('#67BED9');
+        // Adding backdrop
+        this.add.image(1920 / 2, 540, 'background');
         // Declaring base variables
         let angle = 0
         this.score = 0
@@ -459,7 +460,7 @@ class levelThree extends Phaser.Scene {
 
         // Function to create walls: use createWall(x, y, width, height)
         const walls = this.physics.add.staticGroup();
-        const createWall = (x, y, width, height, color = 0xffffff) => {
+        const createWall = (x, y, width, height, color = 0x5E5E5E) => {
             const wall = this.add.rectangle(x, y, width, height, color)
             this.physics.add.existing(wall, true);
             walls.add(wall);
