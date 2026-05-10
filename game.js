@@ -85,7 +85,7 @@ class levelOne extends Phaser.Scene {
         let coin2 = createCoin(1000, 835);
         let coin3 = createCoin(1500, 835);
         let block = blocks.create(1000, 835)
-            .setMass(2)
+            .setMass(4)
             .setScale(8);
 
         // Creating physics collisions
@@ -486,17 +486,17 @@ class levelThree extends Phaser.Scene {
         let coin1 = createCoin(350, 350)
         let block1 = blocks.create(350, 350)
             .setScale(8)
-            .setMass(2);
+            .setMass(4);
         let coin2 = createCoin(1035, 835);
         let block2 = blocks.create(1035, 835)
             .setScale(8)
-            .setMass(2);
+            .setMass(4);
         let block3 = blocks.create(1035, 707)
             .setScale(8)
-            .setMass(2);    
+            .setMass(4);    
         let block4 = blocks.create(1035, 579)
             .setScale(8)
-            .setMass(2);
+            .setMass(4);
         let wall3 = createWall(1400, 500, 75, 400);
         let coin3 = createCoin(1100, 400)
 
