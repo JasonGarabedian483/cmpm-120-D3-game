@@ -1,9 +1,5 @@
 # cmpm-120-D3-game
 ANGRY GOO
-- TO DO
-    - Possibly change background to a drawn image
-    - Maybe color code walls based on how it increase velocity
-
 - Gameplay / Experience requirements
     - Continuous and discrete input
         - Continuous: Aiming character with mouse listens for mouse movement and adjusts in real time
