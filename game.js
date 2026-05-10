@@ -99,7 +99,8 @@ class levelOne extends Phaser.Scene {
                 this.scoreText.setText('Score: ' + this.score);
             }
         );
-
+        
+        // Mouse based actions
         this.input.on('pointermove', (pointer) => {
             angle = Phaser.Math.Angle.BetweenPoints(char1, pointer);
             char1.rotation = angle;
@@ -282,11 +283,9 @@ class levelTwo extends Phaser.Scene{
 
 
         // Creating physics collisions
-        //this.physics.add.collider(char1P, walls);
         this.physics.add.collider(char1P, ground);
         this.physics.add.collider(ground, blocks);
         this.physics.add.collider(char1P, blocks);
-        //this.physics.add.collider(char1P, walls);
         this.physics.add.collider(blocks, walls);
         this.physics.add.collider(char1P, wall1, () => {
             char1P.setVelocityY(-Math.abs(char1P.body.velocity.y) * 1.5);
@@ -303,7 +302,7 @@ class levelTwo extends Phaser.Scene{
         );
         this.physics.add.collider(char1P, walls);
 
-        // PUT THIS AT BOTTOM
+        // Mouse based actions
         this.input.on('pointermove', (pointer) => {
             angle = Phaser.Math.Angle.BetweenPoints(char1, pointer);
             char1.rotation = angle;
