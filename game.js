@@ -636,10 +636,14 @@ class Thanks4Playing extends Phaser.Scene {
 }
 
 const game = new Phaser.Game({
-    mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
     width: 1920,
     height: 1080,
+
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+    },
+
     physics: {
         default: 'arcade',
         arcade: {
